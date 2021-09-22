@@ -74,23 +74,32 @@ public class Pessoa implements Serializable {
 	@Column(name = "DATA_NASCIMENTO", nullable = false)
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MMM-yyyy")
 	private Calendar dataNascimento;
-	
+
 	@JsonIgnore
 	private ZoneId ZONEID = ZoneId.of("America/Sao_Paulo");
 	
-	
-	//Metodo para realizar o calculo da idade dos candidatos
-	public Integer getIdade() {
 
+	// Metodo para realizar o calculo da idade dos candidatos
+	public Integer getIdade() {
 		Integer idade = 0;
 		LocalDate dataHoje = LocalDate.now();
 		if (getDataNascimento() != null) {
-		LocalDate dtNacimento = ZonedDateTime.ofInstant(getDataNascimento().toInstant(), ZONEID).toLocalDate();
-		Period dif = dtNacimento.until(dataHoje);
-		idade = dif.getYears();
+			LocalDate dtNacimento = ZonedDateTime.ofInstant(getDataNascimento().toInstant(), ZONEID).toLocalDate();
+			Period dif = dtNacimento.until(dataHoje);
+			idade = dif.getYears();
 		}
 		return idade;
+	}
 
+	// Metodo para realizar a verificação da maior idade dos candidatos
+	public Boolean getMaiorIdade() {
+		Boolean maiorIdade = false;
+		if (getIdade() >= 18) {
+			maiorIdade = true;
+		} else {
+			maiorIdade = false;
 		}
+		return maiorIdade;
+	}
 
 }

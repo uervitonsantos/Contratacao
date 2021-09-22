@@ -8,6 +8,8 @@ import java.util.List;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -26,9 +28,17 @@ public class PessoaService {
 	@Autowired
 	PessoaRepository pessoaRepository;
 
-	public Pessoa salva(@RequestBody @Valid Pessoa pessoa) {
-		return pessoaRepository.save(pessoa);
-
+	public ResponseEntity<Pessoa> salva(@RequestBody @Valid Pessoa pessoa) {
+		try {
+			if (pessoaRepository.countQuantitPessoa() >= 10) {
+				System.out.println("JÁ HÁ CADASTRADOS 10 PESSOAS");
+				return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		 pessoaRepository.save(pessoa);
+		 return new ResponseEntity<Pessoa>(pessoa, HttpStatus.OK);
 	}
 
 	public Pessoa buscaPorId(@PathVariable Long id) {

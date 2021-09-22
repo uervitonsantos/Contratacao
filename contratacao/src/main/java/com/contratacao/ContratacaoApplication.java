@@ -22,7 +22,7 @@ public class ContratacaoApplication implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
-
+		
 		Pessoa pessoa1 = new Pessoa();
 		pessoa1.setNome("Joaquim");
 		pessoa1.setSobrenome("Maria Machado de Assis");
@@ -102,6 +102,14 @@ public class ContratacaoApplication implements CommandLineRunner {
 		pessoa10.setDataNascimento(new GregorianCalendar(1849, 07, 19));
 
 		pessoaService.salva(pessoa10);
+		
+		Pessoa pessoa11 = new Pessoa();
+		pessoa11.setNome("Uerviton");
+		pessoa11.setSobrenome("Aurélio Barreto Nabuco de Araújo");
+		pessoa11.setCpf("37344438810");
+		pessoa11.setDataNascimento(new GregorianCalendar(1999, 07, 19));
+
+		pessoaService.salva(pessoa11);
 		
 		
 		

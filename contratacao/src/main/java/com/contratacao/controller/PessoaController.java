@@ -51,7 +51,7 @@ public class PessoaController {
 		// METODO QUE SALVA OS DADOS DOS CANDIDATOS. TESTE NO POSTMAN
 		@PostMapping("/pessoa")
 		@ResponseStatus(HttpStatus.CREATED)
-		public Pessoa salvar(@RequestBody Pessoa pessoa) {
+		public ResponseEntity<Pessoa> salvar(@RequestBody Pessoa pessoa) {
 			return pessoaService.salva(pessoa);
 
 		}
