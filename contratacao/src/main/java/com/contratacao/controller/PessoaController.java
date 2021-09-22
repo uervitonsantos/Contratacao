@@ -1,0 +1,76 @@
+/**
+ * 
+ */
+package com.contratacao.controller;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseStatus;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.contratacao.model.Pessoa;
+import com.contratacao.service.PessoaService;
+
+/**
+ * @author uerviton-santos
+ *
+ */
+
+@RestController
+@RequestMapping("/api")
+public class PessoaController {
+	
+	@Autowired
+	PessoaService pessoaService;
+	
+	// METODO QUE LISTA TODOS OS CANDIDATOS. TESTE NO POSTMAN
+		@GetMapping(value = "/pessoa/list")
+		@ResponseStatus(HttpStatus.OK)
+		public List<Pessoa> lista() {
+			return pessoaService.listaTodos();
+		}
+
+		// METODO QUE LISTA OS CANDIDATOS POR Id. TESTE NO POSTMAN
+		@GetMapping(value = "/pessoa/{id}")
+		@ResponseStatus(HttpStatus.OK)
+		public ResponseEntity<Pessoa> buscarById(@PathVariable Long id) {
+			Pessoa pessoa = pessoaService.buscaPorId(id);
+			return ResponseEntity.ok().body(pessoa);
+		}
+
+		// METODO QUE SALVA OS DADOS DOS CANDIDATOS. TESTE NO POSTMAN
+		@PostMapping("/pessoa")
+		@ResponseStatus(HttpStatus.CREATED)
+		public Pessoa salvar(@RequestBody Pessoa pessoa) {
+			return pessoaService.salva(pessoa);
+
+		}
+
+		// METODO QUE ATUALIZA OS DADOS DOS CANDIDATOS POR ID. TESTE NO POSTMAN
+		@PutMapping("/pessoa/{id}")
+		@ResponseStatus(HttpStatus.OK)
+		public Pessoa atualizar(@RequestBody Pessoa newPessoa, @PathVariable Long id) {
+			return pessoaService.atualiza(newPessoa, id);
+
+		}
+
+		// METODO QUE EXCLUI DOS DADOS DO CANDIDATOS. BUSCA REALIZADA POR Id. TESTE NO
+		// POSTMAN
+		@DeleteMapping("/pessoa/{id}")
+		@ResponseStatus(HttpStatus.OK)
+		public void delete(@PathVariable Long id) {
+			pessoaService.exclui(id);
+
+		}
+
+}
