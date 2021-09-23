@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta>
+<title>Contratação</title>
+
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css"
+	rel="stylesheet"
+	integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x"
+	crossorigin="anonymous">
+
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+<script
+	src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"
+	integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4"
+	crossorigin="anonymous"></script>
+
+<link rel="stylesheet"
+	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+
+
+</head>
+<body>
+	<header>
+		<!-- As a link -->
+		<nav class="navbar navbar-expand-lg navbar-dark bg-dark static-top">
+
+			<div class="container-fluid">
+
+				<a class="navbar-brand" href="#">Contratação</a>
+
+			</div>
+		</nav>
+	</header>
+
+	<!-- ========================= INICIO DO FORMULARIO DE CADASTRO DE CLIENTES ====================== -->
+
+	<form style="padding-bottom: 60px">
+		<div class="card" style="width: 60rem; left: 10rem">
+
+			<div class="card-body" style="padding-bottom: 45px">
+
+				<div class="card-header" align="center">
+					<label>Cadastrar novo candidato</label>
+				</div>
+
+				<div style="padding-top: 30px">
+
+					<label for="inputNome">Nome</label> <input type="text"
+						class="form-control" id="inputNome" placeholder="First name">
+
+					<label for="inputNome">Sobrenome</label> <input type="text"
+						class="form-control" id="inputNome" placeholder="Last name">
+
+					<label for="inputNome">CPF</label> <input type="text"
+						class="form-control" id="inputNome" placeholder="CPF"> <label
+						for="inputNome">Data Nascimento</label> <input type="text"
+						class="form-control" id="inputNome" placeholder="Data nascimento">
+
+				</div>
+			</div>
+
+			<button type="button" class="btn btn-success">Salvar</button>
+
+		</div>
+	</form>
+
+	<!-- =========================INICIO DO DATABASE DE CLIENTES=================================== -->
+
+	<div class="container">
+		<div class="row">
+			<h2 class="text-center">Candidatos cadastrados</h2>
+		</div>
+
+		<div class="row">
+			<div class="col-md-12">
+
+				<table id="datatable"
+					class="table table-bordered table-responsive table table-hover"
+					cellspacing="0" width="100%">
+
+					<caption>Contratacao</caption>
+
+					<thead class="table table-dark">
+						<tr>
+							<th>ID</th>
+							<th>Nome</th>
+							<th>Sobrenome</th>
+							<th>CPF</th>
+
+							<th>Idade</th>
+							<th>Maior Idade</th>
+							<th>view</th>
+
+						</tr>
+					</thead>
+
+					<tr th:each="pessoa : ${pessoa}">
+						<th th:text="${pessoa.id}">ID</th>
+						<th th:text="${pessoa.nome}">Nome</th>
+						<th th:text="${pessoa.sobrenome}">Sobrenome</th>
+						<th th:text="${pessoa.cpf}">CPF</th>
+
+						<th th:text="${pessoa.idade} + ' anos'">Idade</th>
+						<th th:text="${pessoa.maiorIdade}">Maior-Idade</th>
+
+
+						<th><button type="button" class="btn btn-success"
+								data-toggle="modal" data-target="#myModal">
+								<i class="bi bi-eye"></i>
+							</button></th>
+					</tr>
+					<tfoot>
+						<!--	 ===========================Rodapé da tabela================= -->
+					</tfoot>
+
+				</table>
+
+
+
+
+
+
+
+
+
+
+
+			</div>
+		</div>
+	</div>
+
+
+	<!-- ============================================================= -->
+
+
+	<div class="modal fade" id="edit" tabindex="-1" role="dialog"
+		aria-labelledby="edit" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"
+						aria-hidden="true">×</button>
+					<h4 class="modal-title custom_align" id="Heading">Edit Your
+						Detail</h4>
+				</div>
+				<div class="modal-body">
+					<div class="form-group">
+						<input class="form-control " type="text" placeholder="Tiger Nixon">
+					</div>
+					<div class="form-group">
+
+						<input class="form-control " type="text"
+							placeholder="System Architect">
+					</div>
+					<div class="form-group">
+
+
+						<input class="form-control " type="text" placeholder="Edinburgh">
+
+					</div>
+				</div>
+				<div class="modal-footer ">
+					<button type="button" class="btn btn-warning btn-lg"
+						style="width: 100%;">
+						<span class="glyphicon glyphicon-ok-sign"></span> Update
+					</button>
+				</div>
+			</div>
+			<!-- /.modal-content -->
+		</div>
+		<!-- /.modal-dialog -->
+	</div>
+
+
+
+	<div class="modal fade" id="delete" tabindex="-1" role="dialog"
+		aria-labelledby="edit" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"
+						aria-hidden="true">×</button>
+					<h4 class="modal-title custom_align" id="Heading">Delete this
+						entry</h4>
+				</div>
+				<div class="modal-body">
+
+					<div class="alert alert-danger">
+						<span class="glyphicon glyphicon-warning-sign"></span> Are you
+						sure you want to delete this Record?
+					</div>
+
+				</div>
+				<div class="modal-footer ">
+					<button type="button" class="btn btn-success">
+						<span class="glyphicon glyphicon-ok-sign"></span> Yes
+					</button>
+					<button type="button" class="btn btn-default" data-dismiss="modal">
+						<span class="glyphicon glyphicon-remove"></span> No
+					</button>
+				</div>
+			</div>
+			<!-- /.modal-content -->
+		</div>
+		<!-- /.modal-dialog -->
+	</div>
+</body>
+</html>

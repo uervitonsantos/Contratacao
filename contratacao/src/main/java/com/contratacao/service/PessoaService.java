@@ -37,8 +37,8 @@ public class PessoaService {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		 pessoaRepository.save(pessoa);
-		 return new ResponseEntity<Pessoa>(pessoa, HttpStatus.OK);
+		pessoaRepository.save(pessoa);
+		return new ResponseEntity<Pessoa>(pessoa, HttpStatus.OK);
 	}
 
 	public Pessoa buscaPorId(@PathVariable Long id) {

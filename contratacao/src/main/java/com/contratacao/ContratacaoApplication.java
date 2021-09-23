@@ -67,7 +67,7 @@ public class ContratacaoApplication implements CommandLineRunner {
 		pessoa6.setNome("Aluísio");
 		pessoa6.setSobrenome("Tancredo Gonçalves de Azevedo");
 		pessoa6.setCpf("65992536361");
-		pessoa6.setDataNascimento(new GregorianCalendar(1057, 03, 14));
+		pessoa6.setDataNascimento(new GregorianCalendar(1857, 03, 14));
 
 		pessoaService.salva(pessoa6);
 		
