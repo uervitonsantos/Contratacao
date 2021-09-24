@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -63,7 +64,7 @@ public class PessoaController {
 		// METODO QUE SALVA OS DADOS DOS CANDIDATOS. TESTE NO POSTMAN
 		@PostMapping("/pessoa")
 		@ResponseStatus(HttpStatus.CREATED)
-		public ResponseEntity<Pessoa> salvar(@RequestBody Pessoa pessoa) {
+		public ResponseEntity<Pessoa> salvar(Pessoa pessoa) {
 			return pessoaService.salva(pessoa);
 
 		}

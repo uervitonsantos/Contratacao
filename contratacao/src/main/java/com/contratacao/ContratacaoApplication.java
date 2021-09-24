@@ -22,7 +22,7 @@ public class ContratacaoApplication implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
-		
+
 		Pessoa pessoa1 = new Pessoa();
 		pessoa1.setNome("Joaquim");
 		pessoa1.setSobrenome("Maria Machado de Assis");
@@ -54,7 +54,7 @@ public class ContratacaoApplication implements CommandLineRunner {
 		pessoa4.setDataNascimento(new GregorianCalendar(1912, 07, 10));
 
 		pessoaService.salva(pessoa4);
-		
+
 		Pessoa pessoa5 = new Pessoa();
 		pessoa5.setNome("Carlos");
 		pessoa5.setSobrenome("Drummond de Andrade");
@@ -62,7 +62,7 @@ public class ContratacaoApplication implements CommandLineRunner {
 		pessoa5.setDataNascimento(new GregorianCalendar(1902, 9, 31));
 
 		pessoaService.salva(pessoa5);
-		
+
 		Pessoa pessoa6 = new Pessoa();
 		pessoa6.setNome("Aluísio");
 		pessoa6.setSobrenome("Tancredo Gonçalves de Azevedo");
@@ -70,7 +70,7 @@ public class ContratacaoApplication implements CommandLineRunner {
 		pessoa6.setDataNascimento(new GregorianCalendar(1857, 03, 14));
 
 		pessoaService.salva(pessoa6);
-		
+
 		Pessoa pessoa7 = new Pessoa();
 		pessoa7.setNome("José");
 		pessoa7.setSobrenome("Maria de Eça de Queiroz");
@@ -78,7 +78,7 @@ public class ContratacaoApplication implements CommandLineRunner {
 		pessoa7.setDataNascimento(new GregorianCalendar(1845, 9, 25));
 
 		pessoaService.salva(pessoa7);
-		
+
 		Pessoa pessoa8 = new Pessoa();
 		pessoa8.setNome("Antônio");
 		pessoa8.setSobrenome("Gonçalves Dias");
@@ -86,7 +86,7 @@ public class ContratacaoApplication implements CommandLineRunner {
 		pessoa8.setDataNascimento(new GregorianCalendar(1823, 07, 10));
 
 		pessoaService.salva(pessoa8);
-		
+
 		Pessoa pessoa9 = new Pessoa();
 		pessoa9.setNome("Manoel");
 		pessoa9.setSobrenome("Antônio Álvares de Azevedo");
@@ -94,7 +94,7 @@ public class ContratacaoApplication implements CommandLineRunner {
 		pessoa9.setDataNascimento(new GregorianCalendar(1831, 8, 31));
 
 		pessoaService.salva(pessoa9);
-		
+
 		Pessoa pessoa10 = new Pessoa();
 		pessoa10.setNome("Joaquim");
 		pessoa10.setSobrenome("Aurélio Barreto Nabuco de Araújo");
@@ -102,32 +102,15 @@ public class ContratacaoApplication implements CommandLineRunner {
 		pessoa10.setDataNascimento(new GregorianCalendar(1849, 07, 19));
 
 		pessoaService.salva(pessoa10);
-		
-		Pessoa pessoa11 = new Pessoa();
-		pessoa11.setNome("Uerviton");
-		pessoa11.setSobrenome("Aurélio Barreto Nabuco de Araújo");
-		pessoa11.setCpf("37344438810");
-		pessoa11.setDataNascimento(new GregorianCalendar(1999, 07, 19));
 
-		pessoaService.salva(pessoa11);
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
+		/*
+		 * Pessoa pessoa11 = new Pessoa(); pessoa11.setNome("Uerviton");
+		 * pessoa11.setSobrenome("Aurélio Barreto Nabuco de Araújo");
+		 * pessoa11.setCpf("37344438810"); pessoa11.setDataNascimento(new
+		 * GregorianCalendar(2008, 07, 19));
+		 * 
+		 * pessoaService.salva(pessoa11);
+		 */
 
 	}
 

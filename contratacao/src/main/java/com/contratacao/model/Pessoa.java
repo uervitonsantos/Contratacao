@@ -72,7 +72,7 @@ public class Pessoa implements Serializable {
 
 	@NotNull(message = "A data de nascimento é obrigatória. O Cliente não foi adicionado à lista")
 	@Column(name = "DATA_NASCIMENTO", nullable = false)
-	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MMM-yyyy")
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy")
 	private Calendar dataNascimento;
 
 	@JsonIgnore
