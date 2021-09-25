@@ -28,6 +28,7 @@ public class PessoaService {
 
 	@Autowired
 	PessoaRepository pessoaRepository;
+	
 
 	public ResponseEntity<Pessoa> salva(@Valid Pessoa pessoa) {
 		try {

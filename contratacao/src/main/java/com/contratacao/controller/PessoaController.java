@@ -36,6 +36,11 @@ public class PessoaController {
 	@Autowired
 	PessoaService pessoaService;
 	
+	@RequestMapping("/teste")
+    public String teste(){
+        return "teste";
+    }
+	
 	
 	@RequestMapping(value="/pessoa", method=RequestMethod.GET)
     public ModelAndView getPosts(){
