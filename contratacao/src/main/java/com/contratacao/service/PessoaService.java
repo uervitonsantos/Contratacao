@@ -13,7 +13,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import com.contratacao.model.Pessoa;
 import com.contratacao.repository.PessoaRepository;
@@ -28,7 +27,6 @@ public class PessoaService {
 
 	@Autowired
 	PessoaRepository pessoaRepository;
-	
 
 	public ResponseEntity<Pessoa> salva(@Valid Pessoa pessoa) {
 		try {

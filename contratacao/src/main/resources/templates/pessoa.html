@@ -25,8 +25,6 @@
 <script
 	src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.15/jquery.mask.min.js"></script>
 
-
-
 <script type="text/javascript" th:src="@{/principal.js}"></script>
 
 </head>
@@ -44,129 +42,109 @@
 	</header>
 
 
-	<!-- INICIO CADASTRO DE CANDIDATOS -->
+	<!-- ======================== INICIO CADASTRO DE CANDIDATOS ===================================-->
 
-
-	<div class="card-body" style="padding-bottom: 15px">
-		<div class="form-group">
-			<div class="row">
-				<div class="col">
+	<div class="form-group">
+		<div class="row">
+			<div class="col">
+				<form class="row needs-validation" onsubmit="return false"
+					novalidate style="padding-right: 5px; padding-left: 20px">
+					<!-- Formulario de cadastros de candidatos -->
 
 					<div class="card">
 
 						<div class="card-body" style="padding-bottom: 15px">
 
+							<div class="card-header" align="center">
+								<label>Cadastrar Novo Candidato</label>
+							</div>
 
+							<div class="form-group" id="myForm" style="padding-top: 15px">
 
-							<form class="row needs-validation" onsubmit="return false" novalidate>
-
-
-								<div class="card-header" align="center">
-									<label>Cadastrar Novo Candidato</label>
+								<div style="padding-bottom: 7px">
+									<input type="text" class="form-control" id="inputNome"
+										name="nome" placeholder="Primeiro nome *" required
+										maxlength="20">
 								</div>
 
+								<div style="padding-bottom: 7px">
+									<input type="text" class="form-control" id="inputSobreNome"
+										name="sobrenome" placeholder="Sobrenome *" required
+										maxlength="50">
+								</div>
 
-								<div class="form-group" id="myForm" style="padding-top: 15px">
+								<div style="padding-bottom: 7px">
+									<input type="text" class="form-control" id="inputCpf"
+										name="cpf" placeholder="CPF *" required
+										onkeypress="$(this).mask('000.000.000-00');">
+								</div>
 
-									<div>
-										<label for="inputNome">Nome</label> <input type="text"
-											class="form-control" id="inputNome" name="nome"
-											placeholder="Primeiro nome *"
-											aria-describedby="inputGroupPrepend" required>
-										<div class="invalid-feedback">O campo nome é obrigatório
-											(*)</div>
-									</div>
-
-									<div>
-										<label for="inputSobreNome">Sobrenome</label> <input
-											type="text" class="form-control" id="inputSobreNome"
-											name="sobrenome" placeholder="Sobrenome *"
-											aria-describedby="inputGroupPrepend" required>
-										<div class="invalid-feedback">O campo sobrenome é
-											obrigatório (*)</div>
-									</div>
-
-									<div>
-										<label for="inputCpf">CPF</label> <input type="text"
-											class="form-control" id="inputCpf" name="cpf"
-											placeholder="CPF *" aria-describedby="inputGroupPrepend"
-											required onkeypress="$(this).mask('000.000.000-00');">
-										<div class="invalid-feedback">O campo cpf é obrigatório
-											(*)</div>
-									</div>
-
-									<div>
-										<label for="inputData">Data Nascimento</label> <input
-											type="date" class="form-control"
-											th:value="${#calendars.format(dataNascimento,'dd-MMM-yyyy')}"
-											id="inputData" name="dataNascimento"
-											placeholder="Data nascimento *"
-											aria-describedby="inputGroupPrepend" required="required">
-										<div class="invalid-feedback">O campo data de nascimento
-											é obrigatório (*)</div>
-									</div>
-
-									<small class="form-text text-muted">(*) Campos
-										obrigatórios</small>
-
-									<div>
-										<hr>
-									</div>
-
-									<div class="col-12">
-										<button onclick="save()" type="submit" class="btn btn-success">
-											Inserir na Tabela <i class="bi bi-arrow-right-circle"></i>
-										</button>
-									</div>
+								<div style="padding-bottom: 7px"><label>Data de Nascimento: <input type="date" class="form-control"
+										th:value="${#calendars.format(dataNascimento,'dd-MMM-yyyy')}"
+										id="inputData" name="dataNascimento"
+										placeholder="Data nascimento *" required></label>
 									
 								</div>
 
-							</form>
+								<small class="form-text text-muted">(*) Campos
+									obrigatórios</small>
+								<div>
+									<hr>
+								</div>
 
-
-
+								<div class="col-12">
+									<button onclick="save()" type="submit" class="btn btn-success">
+										Inserir na Tabela <i class="glyphicon glyphicon-arrow-right"></i>
+									</button>
+								</div>
+							</div>
 						</div>
 					</div>
 
-				</div>
+				</form>
+				<!--  Fim do formulario de cadastros do candidatos -->
+			</div>
 
-				<div class="col">
-					<div class="row">
-						<div class="col-md-12">
 
-							<table id="dtable"
-								class="table table-bordered table-responsive table table-hover"
-								cellspacing="0" width="100%">
+			<div class="col">
+				<form method="post" style="padding-right: 15px; padding-left: 0px">
+					<!-- Inicio da tabela de candidatos -->
+					<div>
+						<table id="dtable"
+							class="table table-bordered table-responsive table table-hover"
+							cellspacing="0" width="900">
 
-								<thead class="table table-dark">
-									<tr>
-										<th>Nome</th>
-										<th>Sobrenome</th>
-										<th>CPF</th>
-										<th>Data Nascimento</th>
-									</tr>
-								</thead>
+							<thead class="table table-dark">
+								<tr>
+									<th>Nome</th>
+									<th>Sobrenome</th>
+									<th width="120">CPF</th>
+									<th width="120">Data</th>
+									<th width="90">Editar</th>
+									
+								</tr>
+							</thead>
+							<tbody>
+							</tbody>
 
-								<tbody>
-								</tbody>
+							<!--	 ===========================Rodapé da tabela================= -->
+							<caption>
+								<button type="submit" class="btn btn-success">Salvar</button>
+							</caption>
 
-								<!--	 ===========================Rodapé da tabela================= -->
-								<caption>
-									<button type="submit" class="btn btn-success">Salvar</button>
-								</caption>
+						</table>
 
-							</table>
-						</div>
 					</div>
-				</div>
+				</form>
+				<!-- Fim da tabela de candidatos -->
+
+
 			</div>
 		</div>
 	</div>
 
-	<!-- TESTE -->
 
-
-	<!-- =========================INICIO DO DATABASE DE CLIENTES=================================== -->
+	<!-- ======================== INICIO DO DATABASE DE CLIENTES ================================== -->
 
 	<div class="container">
 		<div class="row">
@@ -180,7 +158,7 @@
 					class="table table-bordered table-responsive table table-hover"
 					cellspacing="0" width="100%">
 
-					<caption>Contratacao</caption>
+					<caption>Contratação</caption>
 
 					<thead class="table table-dark">
 						<tr>
@@ -191,7 +169,7 @@
 							<th>Data Nascimento</th>
 							<th>Idade</th>
 							<th>Maior Idade</th>
-							<th>view</th>
+							<th width="130">Editar</th>
 
 						</tr>
 					</thead>
@@ -208,10 +186,11 @@
 						<th th:text="${pessoa.maiorIdade}">Maior-Idade</th>
 
 
-						<th><button type="button" class="btn btn-success"
-								data-toggle="modal" data-target="#myModal">
-								<i class="bi bi-eye"></i>
-							</button></th>
+						<th>
+						<button type="button" onclick="" class="btn btn-primary btn btn-primary btn-sm"><i class="glyphicon glyphicon-eye-open"></i></button> 
+						<button type="button" onclick="" class="btn btn-warning btn btn-primary btn-sm"><i class="glyphicon glyphicon-edit"></i></button>
+						<button type="button" onclick="" class="btn btn-danger btn btn-primary btn-sm"><i class="glyphicon glyphicon-trash"></i></button>
+						</th>
 					</tr>
 					<tfoot>
 						<!--	 ===========================Rodapé da tabela================= -->
@@ -251,7 +230,70 @@
 </script>
 
 
+
 	<!-- ================================================================================================= -->
+
+
+
+
+	<div>
+		<form method="post">
+
+			<div class="form-group">
+
+				<input type="text" class="form-control" id="inputNome" name="nome"
+					placeholder="Primeiro nome *" aria-describedby="inputGroupPrepend"
+					required> <input type="text" class="form-control"
+					id="inputSobreNome" name="sobrenome" placeholder="Sobrenome *">
+
+
+
+				<input type="text" class="form-control" id="inputCpf" name="cpf"
+					placeholder="CPF *" onkeypress="$(this).mask('000.000.000-00');">
+
+
+
+				<input type="date" class="form-control"
+					th:value="${#calendars.format(dataNascimento,'dd-MMM-yyyy')}"
+					id="inputData" name="dataNascimento"
+					placeholder="Data nascimento *"> <small
+					class="form-text text-muted">(*) Campos obrigatórios</small>
+
+
+				<hr>
+
+				<button type="submit" class="btn btn-success">Salvar</button>
+
+
+			</div>
+
+		</form>
+
+
+
+	</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 </body>
 </html>
