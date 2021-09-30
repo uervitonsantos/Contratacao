@@ -7,7 +7,6 @@ var selectedRow = null
 
 //Função que verificam se os campos do formulario de cadastro de candidato estão vazios e rtorna uma mensagem.
 //Se os campos forem preenchidos corretamnte, a função transfere os dados para o database
-
 function save() {
 	if (document.getElementById("inputNome").value.length == '') {
 		alert('Por favor, preencha o campo nome');
@@ -38,9 +37,7 @@ function save() {
 		document.getElementById("inputCpf").value = "";
 		document.getElementById("inputData").value = "";
 		document.getElementById("inputNome").focus();
-
 	}
-
 }
 
 //Função que realiza a criação das colunas no database
@@ -64,7 +61,6 @@ function createRow(nome, sobrenome, Cpf, data) {
 	cell5 = tr.insertCell(4);
 	cell5.innerHTML = `<button type="button" onclick="onEdit(this)" class="btn btn-warning btn btn-primary btn-sm"><i class="glyphicon glyphicon-pencil"></i></button>
 						<button type="button" onclick="onDelete(this)" class="btn btn-danger btn btn-primary btn-sm"><i class="glyphicon glyphicon-trash"></i></button>`;
-
 	return tr;
 }
 
@@ -103,6 +99,8 @@ function onDelete(td) {
 		document.getElementById("inputData").value = "";
 	}
 }
+
+
 
 
 

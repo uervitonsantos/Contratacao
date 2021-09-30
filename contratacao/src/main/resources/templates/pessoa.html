@@ -25,6 +25,12 @@
 <script
 	src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.15/jquery.mask.min.js"></script>
 
+<script
+	src="https://cdn.jsdelivr.net/npm/table-to-json@1.0.0/lib/jquery.tabletojson.min.js"
+	integrity="sha256-H8xrCe0tZFi/C2CgxkmiGksqVaxhW0PFcUKZJZo1yNU="
+	crossorigin="anonymous"></script>
+
+
 <script type="text/javascript" th:src="@{/principal.js}"></script>
 
 </head>
@@ -79,11 +85,13 @@
 										onkeypress="$(this).mask('000.000.000-00');">
 								</div>
 
-								<div style="padding-bottom: 7px"><label>Data de Nascimento: <input type="date" class="form-control"
+								<div style="padding-bottom: 7px">
+									<label>Data de Nascimento: <input type="date"
+										class="form-control"
 										th:value="${#calendars.format(dataNascimento,'dd-MMM-yyyy')}"
 										id="inputData" name="dataNascimento"
 										placeholder="Data nascimento *" required></label>
-									
+
 								</div>
 
 								<small class="form-text text-muted">(*) Campos
@@ -121,24 +129,20 @@
 									<th width="120">CPF</th>
 									<th width="120">Data</th>
 									<th width="90">Editar</th>
-									
 								</tr>
 							</thead>
 							<tbody>
 							</tbody>
 
 							<!--	 ===========================Rodapé da tabela================= -->
+
 							<caption>
-								<button type="submit" class="btn btn-success">Salvar</button>
+								<button type="submit" id="convert-table" class="btn btn-success">Salvar</button>
 							</caption>
-
 						</table>
-
 					</div>
 				</form>
 				<!-- Fim da tabela de candidatos -->
-
-
 			</div>
 		</div>
 	</div>
@@ -187,9 +191,18 @@
 
 
 						<th>
-						<button type="button" onclick="" class="btn btn-primary btn btn-primary btn-sm"><i class="glyphicon glyphicon-eye-open"></i></button> 
-						<button type="button" onclick="" class="btn btn-warning btn btn-primary btn-sm"><i class="glyphicon glyphicon-edit"></i></button>
-						<button type="button" onclick="" class="btn btn-danger btn btn-primary btn-sm"><i class="glyphicon glyphicon-trash"></i></button>
+							<button type="button" onclick=""
+								class="btn btn-primary btn btn-primary btn-sm">
+								<i class="glyphicon glyphicon-eye-open"></i>
+							</button>
+							<button type="button" onclick=""
+								class="btn btn-warning btn btn-primary btn-sm">
+								<i class="glyphicon glyphicon-edit"></i>
+							</button>
+							<button type="button" onclick=""
+								class="btn btn-danger btn btn-primary btn-sm">
+								<i class="glyphicon glyphicon-trash"></i>
+							</button>
 						</th>
 					</tr>
 					<tfoot>
@@ -229,71 +242,19 @@
 
 </script>
 
+	<script type="text/javascript">
+$('#convert-table').click(function() {
+	 var table = $('#dtable').tableToJSON(); // Convert the table into a javascript object
+	 if(table == "" || table == null){
+		 alert('Não há linhas na tabela')
+		 return false;
+		 }else{
+			 console.log(table);
+			 alert(JSON.stringify(table));
+			 }
+	 });
 
-
-	<!-- ================================================================================================= -->
-
-
-
-
-	<div>
-		<form method="post">
-
-			<div class="form-group">
-
-				<input type="text" class="form-control" id="inputNome" name="nome"
-					placeholder="Primeiro nome *" aria-describedby="inputGroupPrepend"
-					required> <input type="text" class="form-control"
-					id="inputSobreNome" name="sobrenome" placeholder="Sobrenome *">
-
-
-
-				<input type="text" class="form-control" id="inputCpf" name="cpf"
-					placeholder="CPF *" onkeypress="$(this).mask('000.000.000-00');">
-
-
-
-				<input type="date" class="form-control"
-					th:value="${#calendars.format(dataNascimento,'dd-MMM-yyyy')}"
-					id="inputData" name="dataNascimento"
-					placeholder="Data nascimento *"> <small
-					class="form-text text-muted">(*) Campos obrigatórios</small>
-
-
-				<hr>
-
-				<button type="submit" class="btn btn-success">Salvar</button>
-
-
-			</div>
-
-		</form>
-
-
-
-	</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+</script>
+	
 </body>
 </html>

@@ -1,5 +1,5 @@
 /**
- * 
+ * cLASSE QUE IMPREMENTA OS ATRIBUTOS E METODOS DO OBJETO PESSOA
  */
 package com.contratacao.model;
 
@@ -25,7 +25,6 @@ import javax.validation.constraints.Pattern;
 import org.hibernate.validator.constraints.br.CPF;
 import org.springframework.format.annotation.DateTimeFormat;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import lombok.AllArgsConstructor;
@@ -70,10 +69,10 @@ public class Pessoa implements Serializable {
 
 	@NotBlank(message = "CPF é obrigatório")
 	@CPF(message = "CPF invalido")
-	@Column(name = "CPF", unique = true, nullable = false, length = 12)
+	@Column(name = "CPF", unique = true, nullable = false, length = 14)
 	private String cpf;
 
-	@NotNull(message = "A data de nascimento é obrigatória. O Cliente não foi adicionado à lista")
+	@NotNull(message = "A data de nascimento é obrigatória. O candidato não foi adicionado à lista")
 	@Column(name = "DATA_NASCIMENTO", nullable = false)
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	@Temporal(TemporalType.DATE)

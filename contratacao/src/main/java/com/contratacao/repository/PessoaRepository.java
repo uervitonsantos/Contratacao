@@ -1,5 +1,7 @@
 /**
- * 
+ * CLASSE (PESSOAREPOSITORY) EXTENDE A CLASSE (JPAREPOSITORY) QUE 
+ * FORNECE OS METODOS PARA COMTROLE DAS TRANSAÇÕES COM DO BANCO 
+ * DE DADOS 
  */
 package com.contratacao.repository;
 
@@ -17,6 +19,7 @@ import com.contratacao.model.Pessoa;
 @Repository
 public interface PessoaRepository extends JpaRepository<Pessoa, Long>{
 	
+	//QUERY PERSONALIZADA PARA CONTAR AS LINHAS DA TABELA PESSOA
 	@Query("select count(*) from Pessoa")
 	int countQuantitPessoa();
 }

@@ -28,6 +28,7 @@ public class PessoaService {
 	@Autowired
 	PessoaRepository pessoaRepository;
 
+	//Metodo utilizado para realizar a persistencia dos dados na tabela Pessoa
 	public ResponseEntity<Pessoa> salva(@Valid Pessoa pessoa) {
 		try {
 			if (pessoaRepository.countQuantitPessoa() >= 10) {
@@ -40,17 +41,20 @@ public class PessoaService {
 		pessoaRepository.save(pessoa);
 		return new ResponseEntity<Pessoa>(pessoa, HttpStatus.OK);
 	}
-
+	
+	
+	//Metodo utilizado para realizar a busca por ID
 	public Pessoa buscaPorId(@PathVariable Long id) {
 		return pessoaRepository.findById(id).get();
-
 	}
 
+	//Metodo para realizar a listagem dos dados da tabela Pessoa
 	public List<Pessoa> listaTodos() {
 		return pessoaRepository.findAll();
 
 	}
 
+	//Metodo utilizado para atualizar os dados na tabela Pessoa
 	public Pessoa atualiza(@RequestBody Pessoa newpessoa, @PathVariable Long id) {
 
 		return pessoaRepository.findById(id).map(pessoa -> {
@@ -67,6 +71,7 @@ public class PessoaService {
 		});
 	}
 
+	//Metodo utilizado para excluir os dados da tabela Pessoa
 	public void exclui(@PathVariable Long id) {
 		pessoaRepository.deleteById(id);
 
