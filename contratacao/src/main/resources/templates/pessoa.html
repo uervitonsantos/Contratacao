@@ -101,7 +101,7 @@
 								</div>
 
 								<div class="col-12">
-									<button onclick="save()" type="submit" class="btn btn-success">
+									<button onclick="insertForm()" type="submit" class="btn btn-success">
 										Inserir na Tabela <i class="glyphicon glyphicon-arrow-right"></i>
 									</button>
 								</div>
@@ -115,7 +115,7 @@
 
 
 			<div class="col">
-				<form method="post" style="padding-right: 15px; padding-left: 0px">
+				<form method="post" onsubmit="event.preventDefault();formSubmit()" style="padding-right: 15px; padding-left: 0px">
 					<!-- Inicio da tabela de candidatos -->
 					<div>
 						<table id="dtable"
@@ -255,6 +255,72 @@ $('#convert-table').click(function() {
 	 });
 
 </script>
-	
+
+
+
+	<!-- ================================================================================================= -->
+
+
+
+
+	<div>
+		<form method="post">
+
+			<div class="form-group">
+
+				<input type="text" class="form-control" id="inputNome" name="nome"
+					placeholder="Primeiro nome *" aria-describedby="inputGroupPrepend"
+					required> <input type="text" class="form-control"
+					id="inputSobreNome" name="sobrenome" placeholder="Sobrenome *">
+
+
+
+				<input type="text" class="form-control" id="inputCpf" name="cpf"
+					placeholder="CPF *" onkeypress="$(this).mask('000.000.000-00');">
+
+
+
+				<input type="date" class="form-control"
+					th:value="${#calendars.format(dataNascimento,'dd-MMM-yyyy')}"
+					id="inputData" name="dataNascimento"
+					placeholder="Data nascimento *"> <small
+					class="form-text text-muted">(*) Campos obrigatórios</small>
+
+
+				<hr>
+
+				<button type="submit" class="btn btn-success">Salvar</button>
+
+
+			</div>
+
+		</form>
+
+
+
+	</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 </body>
 </html>

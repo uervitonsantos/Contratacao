@@ -4,10 +4,23 @@
 
 var selectedRow = null
 
+function formSubmit(){
+	if(insertForm == true){
+		var formDate = insertForm();
+		if(selectedRow == null){
+			createRow(formDate);	
+		}else{
+			updateRecord(formdate);
+			clearForm();
+		}
+		
+	}
+}
+
 
 //Função que verificam se os campos do formulario de cadastro de candidato estão vazios e rtorna uma mensagem.
 //Se os campos forem preenchidos corretamnte, a função transfere os dados para o database
-function save() {
+function insertForm() {
 	if (document.getElementById("inputNome").value.length == '') {
 		alert('Por favor, preencha o campo nome');
 		document.getElementById("inputNome").focus();
@@ -31,13 +44,16 @@ function save() {
 		const data = document.getElementById('inputData').value;
 		const tbody = document.querySelector('#dtable tbody');
 		tbody.appendChild(createRow(nome, sobrenome, Cpf, data));
-
-		document.getElementById("inputNome").value = "";
-		document.getElementById("inputSobreNome").value = "";
-		document.getElementById("inputCpf").value = "";
-		document.getElementById("inputData").value = "";
-		document.getElementById("inputNome").focus();
+		clearForm();
 	}
+}
+
+function clearForm() {
+	document.getElementById("inputNome").value = "";
+	document.getElementById("inputSobreNome").value = "";
+	document.getElementById("inputCpf").value = "";
+	document.getElementById("inputData").value = "";
+	document.getElementById("inputNome").focus();
 }
 
 //Função que realiza a criação das colunas no database
@@ -93,10 +109,7 @@ function onDelete(td) {
 	if (confirm('Tem certeza que deseja excluir este registro?')) {
 		row = td.parentElement.parentElement;
 		document.getElementById("dtable").deleteRow(row.rowIndex);
-		document.getElementById("inputNome").value = "";
-		document.getElementById("inputSobreNome").value = "";
-		document.getElementById("inputCpf").value = "";
-		document.getElementById("inputData").value = "";
+		clearForm();
 	}
 }
 
