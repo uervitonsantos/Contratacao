@@ -8,13 +8,18 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import com.contratacao.model.Pessoa;
+import com.contratacao.model.Vaga;
 import com.contratacao.service.PessoaService;
+import com.contratacao.service.VagaService;
 
 @SpringBootApplication
 public class ContratacaoApplication implements CommandLineRunner {
 
 	@Autowired
 	PessoaService pessoaService;
+
+	@Autowired
+	VagaService vagaService;
 
 	public static void main(String[] args) {
 		SpringApplication.run(ContratacaoApplication.class, args);
@@ -30,6 +35,7 @@ public class ContratacaoApplication implements CommandLineRunner {
 		pessoa1.setDataNascimento(new GregorianCalendar(1839, 05, 12));
 
 		pessoaService.salva(pessoa1);
+
 
 		/*
 		 * Pessoa pessoa2 = new Pessoa(); pessoa2.setNome("José");
@@ -53,7 +59,7 @@ public class ContratacaoApplication implements CommandLineRunner {
 		 * 
 		 * Pessoa pessoa5 = new Pessoa(); pessoa5.setNome("Carlos");
 		 * pessoa5.setSobrenome("Drummond de Andrade"); pessoa5.setCpf("48425754330");
-		 * pessoa5.setDataNascimento(new GregorianCalendar(1902, 9, 31));
+		 * pessoa5.setDataNascimento(new GregorianCalendar(1902, 10, 31));
 		 * 
 		 * pessoaService.salva(pessoa5);
 		 * 

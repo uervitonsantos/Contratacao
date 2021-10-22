@@ -6,10 +6,9 @@
 package com.contratacao.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
-import com.contratacao.model.Pessoa;
+import com.contratacao.model.Vaga;
 
 /**
  * @author uerviton-santos
@@ -17,9 +16,8 @@ import com.contratacao.model.Pessoa;
  */
 
 @Repository
-public interface PessoaRepository extends JpaRepository<Pessoa, Long>{
+public interface VagaRepository extends JpaRepository<Vaga, Long>{
 	
 	//QUERY PERSONALIZADA PARA CONTAR AS LINHAS DA TABELA PESSOA
-	 @Query("select count(*) from Pessoa") int countQuantitPessoa();
-	 
+
 }

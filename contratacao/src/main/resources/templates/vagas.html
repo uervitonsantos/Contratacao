@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta>
+<title>Contratação</title>
+
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css"
+	rel="stylesheet"
+	integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x"
+	crossorigin="anonymous">
+
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+<script
+	src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"
+	integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4"
+	crossorigin="anonymous"></script>
+
+<link rel="stylesheet"
+	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.15/jquery.mask.min.js"></script>
+
+<script
+	src="https://cdn.jsdelivr.net/npm/table-to-json@1.0.0/lib/jquery.tabletojson.min.js"
+	integrity="sha256-H8xrCe0tZFi/C2CgxkmiGksqVaxhW0PFcUKZJZo1yNU="
+	crossorigin="anonymous"></script>
+
+
+<script type="text/javascript" th:src="@{/principal.js}"></script>
+
+</head>
+<body>
+	<header>
+		<!-- As a link -->
+		<nav class="navbar navbar-expand-lg navbar-dark bg-dark static-top">
+
+			<div class="container-fluid">
+
+				<a class="navbar-brand" href="#">Contratação</a>
+
+			</div>
+		</nav>
+	</header>
+
+	<!-- =========================== INICIO CADASTRO DE VAGAS =================================-->
+	
+	<div class="form-group">
+		<div class="row">
+			<div class="col-md-4">
+				<form class="row needs-validation" method="post"
+					novalidate style="padding-right: 5px; padding-left: 20px">
+					<!-- Formulario de cadastros de vagas -->
+
+					<div class="card">
+
+						<div class="card-body" style="padding-bottom: 15px">
+
+							<div class="card-header" align="center">
+								<label>Cadastrar Novo Vaga</label>
+							</div>
+
+							<div class="form-group" id="myForm" style="padding-top: 15px">
+
+								<div style="padding-bottom: 7px">
+									<input type="text" class="form-control" id="inputTitulo"
+										name="titulo" placeholder="Titulo *" required
+										maxlength="100">
+								</div>
+
+								<div style="padding-bottom: 7px">
+									<textarea class="form-control" id="inputDescricao"
+										name="descricao" placeholder="Descrição *" required
+										maxlength="600" rows="7"></textarea>
+								</div>
+
+								<div style="padding-bottom: 7px">
+									<input type="text" class="form-control" id="inputQuantidadeVagas"
+										name="quantidadeVagas" placeholder="Quantidade de vagas *" required>
+								</div>
+								
+								<div style="padding-bottom: 7px">
+									<input type="text" class="form-control" id="inputMaximoCandidatos"
+										name="maximoCandidatos" placeholder="Quantidade maxima de candidatos *" required>
+								</div>
+
+								<div style="padding-bottom: 7px">
+									<label>Data: <input type="date"
+										class="form-control"
+										th:value="${#calendars.format(data,'dd-MMM-yyyy')}"
+										id="inputData" name="data"
+										placeholder="Data *" required></label>
+								</div>
+
+								<small class="form-text text-muted">(*) Campos
+									obrigatórios</small>
+								<div>
+									<hr>
+								</div>
+
+								<div class="col-12">
+									<button type="submit"
+										class="btn btn-success">Salvar vaga
+									</button>
+								</div>
+							</div>
+						</div>
+					</div>
+
+				</form>
+				<!--  Fim do formulario de cadastros do candidatos -->
+			</div>
+
+
+			<div class="col">
+				<form style="padding-right: 15px; padding-left: 0px">
+					<!-- Inicio da tabela de candidatos -->
+					<div>
+						<table id="dtable"
+							class="table table-bordered table-responsive table table-hover"
+							cellspacing="0" width="900">
+
+							<thead class="table table-dark">
+								<tr>
+									<th>Titulo</th>
+									<th>Descrição</th>
+									<th width="120">Quantidade</th>
+									<th width="120">Data</th>
+									<th width="90">Editar</th>
+								</tr>
+							</thead>
+							<tbody>
+							</tbody>
+
+							<!--	 ===========================Rodapé da tabela================= -->
+
+						</table>
+					</div>
+				</form>
+				<!-- Fim da tabela de candidatos -->
+			</div>
+		</div>
+	</div>
+	
+	<!-- ============================= FIM CADASTRO DE VAGAS ===================================-->
+
+</body>
+</html>

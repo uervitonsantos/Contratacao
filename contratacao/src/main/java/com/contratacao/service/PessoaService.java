@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 
 import com.contratacao.model.Pessoa;
+import com.contratacao.model.Vaga;
 import com.contratacao.repository.PessoaRepository;
 
 /**
@@ -24,16 +25,20 @@ import com.contratacao.repository.PessoaRepository;
 
 @Service
 public class PessoaService {
-
+	
+	
 	@Autowired
 	PessoaRepository pessoaRepository;
 
 	//Metodo utilizado para realizar a persistencia dos dados na tabela Pessoa
 	public ResponseEntity<Pessoa> salva(@Valid Pessoa pessoa) {
+		
+		Vaga vaga = new Vaga();
+		
 		try {
-			if (pessoaRepository.countQuantitPessoa() >= 10) {
+			if (pessoaRepository.countQuantitPessoa() >= 100) {
 				System.out.println("JÁ HÁ CADASTRADOS 10 PESSOAS");
-				return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+				return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -58,7 +63,7 @@ public class PessoaService {
 	public Pessoa atualiza(@RequestBody Pessoa newpessoa, @PathVariable Long id) {
 
 		return pessoaRepository.findById(id).map(pessoa -> {
-			pessoa.setId(newpessoa.getId());
+			pessoa.setId_pessoa(newpessoa.getId_pessoa());
 			pessoa.setNome(newpessoa.getNome());
 			pessoa.setSobrenome(newpessoa.getSobrenome());
 			pessoa.setCpf(newpessoa.getCpf());
@@ -66,7 +71,7 @@ public class PessoaService {
 
 			return pessoaRepository.save(pessoa);
 		}).orElseGet(() -> {
-			newpessoa.setId(id);
+			newpessoa.setId_pessoa(id);
 			return pessoaRepository.save(newpessoa);
 		});
 	}
