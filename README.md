@@ -34,3 +34,5 @@ Inicialmente o usuário precisará fazer o cadastro de acordo com o nº de vagas
 As informações necessárias para inserir um candidato é Nome, Sobrenome, CPF e Data de nascimento, todas as informações são obrigatórias, caso não for preenchido o usuário deve ser avisado sobre qual campo está com problema e o mesmo candidato não pode ser inserido 2 vezes.
 
 A tabela que irá agrupar os candidatos vai conter as informações Nome, Sobrenome, CPF, Data de Nascimento, Idade e É maior de idade?. E por fim um botão para confirmar o cadastro de todos os candidatos e avisar ao usuário que os candidatos foram cadastrados com sucesso.
+
+![image](https://user-images.githubusercontent.com/15036785/135767730-17fa417c-20b4-4519-bbfa-86d19e91a1c6.png)
