@@ -57,7 +57,7 @@ public class VagaController {
 
 	// METODO QUE SALVA OS DADOS DAS VAGAS. TESTE NO POSTMAN
 	@RequestMapping(value = "/vagas", method = RequestMethod.POST)
-	public ResponseEntity<Vaga> salvar(Vaga vaga) {
+	public String salvar(Vaga vaga) {
 		return vagaService.salva(vaga);
 
 	}

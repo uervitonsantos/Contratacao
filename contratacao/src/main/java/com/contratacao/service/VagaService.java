@@ -3,13 +3,12 @@
  */
 package com.contratacao.service;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -29,9 +28,10 @@ public class VagaService {
 	VagaRepository vagaRepository;
 
 	// Metodo utilizado para realizar a persistencia dos dados na tabela Vaga
-	public ResponseEntity<Vaga> salva(@Valid Vaga vaga) {
+	public String salva(@Valid Vaga vaga) {
+		vaga.setData(LocalDate.now());
 		vagaRepository.save(vaga);
-		return new ResponseEntity<Vaga>(vaga, HttpStatus.OK);
+		return "redirect:/api/vagas";
 	}
 
 	// Metodo utilizado para realizar a busca por ID
@@ -42,7 +42,6 @@ public class VagaService {
 	// Metodo para realizar a listagem dos dados da tabela Vaga
 	public List<Vaga> listaTodos() {
 		return vagaRepository.findAll();
-
 	}
 
 	// Metodo utilizado para atualizar os dados na tabela Vaga
@@ -52,9 +51,7 @@ public class VagaService {
 			vaga.setId_vaga(newvaga.getId_vaga());
 			vaga.setTitulo(newvaga.getTitulo());
 			vaga.setDescricao(newvaga.getDescricao());
-			vaga.setQuantidadeVagas(newvaga.getQuantidadeVagas());
-			vaga.setMaximoCandidatos(newvaga.getMaximoCandidatos());
-			vaga.setData(newvaga.getData());
+			vaga.setData_validade(newvaga.getData_validade());
 
 			return vagaRepository.save(vaga);
 		}).orElseGet(() -> {

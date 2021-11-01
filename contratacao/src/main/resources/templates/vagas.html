@@ -31,7 +31,7 @@
 	crossorigin="anonymous"></script>
 
 
-<script type="text/javascript" th:src="@{/principal.js}"></script>
+<script type="text/javascript" th:src="@{/vagas.js}"></script>
 
 </head>
 <body>
@@ -48,12 +48,12 @@
 	</header>
 
 	<!-- =========================== INICIO CADASTRO DE VAGAS =================================-->
-	
+
 	<div class="form-group">
 		<div class="row">
 			<div class="col-md-4">
-				<form class="row needs-validation" method="post"
-					novalidate style="padding-right: 5px; padding-left: 20px">
+				<form class="row needs-validation" method="post" novalidate
+					style="padding-right: 5px; padding-left: 20px">
 					<!-- Formulario de cadastros de vagas -->
 
 					<div class="card">
@@ -68,32 +68,19 @@
 
 								<div style="padding-bottom: 7px">
 									<input type="text" class="form-control" id="inputTitulo"
-										name="titulo" placeholder="Titulo *" required
-										maxlength="100">
+										name="titulo" placeholder="Titulo *" required maxlength="100">
 								</div>
 
 								<div style="padding-bottom: 7px">
 									<textarea class="form-control" id="inputDescricao"
 										name="descricao" placeholder="Descrição *" required
-										maxlength="600" rows="7"></textarea>
+										maxlength="2000" rows="13"></textarea>
 								</div>
 
 								<div style="padding-bottom: 7px">
-									<input type="text" class="form-control" id="inputQuantidadeVagas"
-										name="quantidadeVagas" placeholder="Quantidade de vagas *" required>
-								</div>
-								
-								<div style="padding-bottom: 7px">
-									<input type="text" class="form-control" id="inputMaximoCandidatos"
-										name="maximoCandidatos" placeholder="Quantidade maxima de candidatos *" required>
-								</div>
-
-								<div style="padding-bottom: 7px">
-									<label>Data: <input type="date"
-										class="form-control"
-										th:value="${#calendars.format(data,'dd-MMM-yyyy')}"
-										id="inputData" name="data"
-										placeholder="Data *" required></label>
+									<label>Encerramento da vaga: <input type="date" class="form-control"
+										th:value="${#calendars.format(data_validade,'dd-MMM-yyyy')}"
+										id="inputData" name="data_validade" placeholder="Data *" required></label>
 								</div>
 
 								<small class="form-text text-muted">(*) Campos
@@ -103,9 +90,8 @@
 								</div>
 
 								<div class="col-12">
-									<button type="submit"
-										class="btn btn-success">Salvar vaga
-									</button>
+									<button type="submit" class="btn btn-success">Salvar
+										vaga</button>
 								</div>
 							</div>
 						</div>
@@ -126,14 +112,29 @@
 
 							<thead class="table table-dark">
 								<tr>
+									<th>ID</th>
 									<th>Titulo</th>
 									<th>Descrição</th>
-									<th width="120">Quantidade</th>
 									<th width="120">Data</th>
-									<th width="90">Editar</th>
+									<th width="45">Editar</th>
 								</tr>
 							</thead>
 							<tbody>
+
+								<tr th:each="vagas : ${vagas}">
+									<th th:text="${vagas.id_vaga}">ID</th>
+									<th th:text="${vagas.titulo}">Titulo</th>
+									<th th:utext="${#strings.abbreviate(vagas.descricao, 70)}">Descrição</th>
+									<th th:text="${#calendars.format(vagas.data_validade,'dd-MMM-yyyy')}">Data</th>
+
+									<th>
+										<button type="button" onclick=""
+											class="btn btn-warning btn-sm">
+											<i class="glyphicon glyphicon-eye-open"></i>
+										</button>
+
+									</th>
+								</tr>
 							</tbody>
 
 							<!--	 ===========================Rodapé da tabela================= -->
@@ -145,8 +146,32 @@
 			</div>
 		</div>
 	</div>
-	
+
 	<!-- ============================= FIM CADASTRO DE VAGAS ===================================-->
+
+	<script type="text/javascript">
+//Example starter JavaScript for disabling form submissions if there are invalid fields
+(function () {
+  'use strict'
+
+  // Fetch all the forms we want to apply custom Bootstrap validation styles to
+  var forms = document.querySelectorAll('.needs-validation')
+
+  // Loop over them and prevent submission
+  Array.prototype.slice.call(forms)
+    .forEach(function (form) {
+      form.addEventListener('submit', function (event) {
+        if (!form.checkValidity()) {
+          event.preventDefault()
+          event.stopPropagation()
+        }
+
+        form.classList.add('was-validated')
+      }, false)
+    })
+})()
+
+</script>
 
 </body>
 </html>
